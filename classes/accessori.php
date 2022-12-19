@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/prodotto.php';
+include_once __DIR__ . './prodotto.php';
 
 class accessori extends Prodotto {
   public $materiale;
@@ -13,11 +13,11 @@ class accessori extends Prodotto {
     Category $category,
 
     String $materiale,
-    Float $dimensioni
+    String $dimensioni
     ) {
     $this->materiale = $materiale;
     $this->dimensioni = $dimensioni;
-    parent::__construct($nome, $immagine, $prezzo, $category );
+    parent::__construct($immagine, $nome, $prezzo, $category );
   }
 }
 

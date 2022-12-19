@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/prodotto.php';
+include_once __DIR__ . './prodotto.php';
 
 class cibo extends Prodotto {
   public $peso;
@@ -12,12 +12,12 @@ class cibo extends Prodotto {
     Float $prezzo,
     Category $category,
 
-    Float $peso,
+    String $peso,
     String $ingredienti
     ) {
     $this->peso = $peso;
     $this->ingredienti = $ingredienti;
-    parent::__construct($nome, $immagine, $prezzo, $category );
+    parent::__construct($immagine, $nome, $prezzo, $category );
   }
 }
 
