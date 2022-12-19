@@ -13,10 +13,10 @@ $category = [
 ];
 
 $prodotti = [
-  new cibo('https://picsum.photos/300/200?random=1', 'Royal Canin', '43.99', $category['Cane'], '545g', 'ingredienti: prosciutto, riso'),
-  new cibo('https://picsum.photos/300/200?random=2', 'Almo Nature', '44.99', $category['Cane'], 'Peso: 600g', 'ingredienti: manzo, cereali'),
-  new accessori('https://picsum.photos/300/200?random=3', 'Voliera Ferplast Bella Casa', '184.99', $category['Uccelli'], 'Materiale: Legno', 'Dimensioni: M L 83 x P 67 x H 153 cm'),
-  new giocattoli('https://picsum.photos/300/200?random=4', 'Topini di peluche Trixie', '4.99', $category['Gatto'], 'Caratteristiche: Morbido con codina in corda', 'dimensioni: 8,5cm x 10cm'),
+  new cibo('https://picsum.photos/300/200?random=1', 'Royal Canin', '43.99', $category['Cane'], '545', 'prosciutto, riso'),
+  new cibo('https://picsum.photos/300/200?random=2', 'Almo Nature', '44.99', $category['Cane'], '600', 'manzo, cereali'),
+  new accessori('https://picsum.photos/300/200?random=3', 'Voliera Ferplast Bella Casa', '184.99', $category['Uccelli'], 'Materiale: Legno', 'M L 83 x P 67 x H 153 cm'),
+  new giocattoli('https://picsum.photos/300/200?random=4', 'Topini di peluche Trixie', '4.99', $category['Gatto'], 'Morbido con codina in corda', '8,5cm x 10cm'),
 ];
 
 ?>
@@ -49,32 +49,39 @@ $prodotti = [
     <div class="container">
       <h1>Boolshop</h1>
 
-      <div class="container">
-        <div class="row">
-          <h2>I nostri prodotti</h2>
-          <?php foreach ($prodotti as $elem) { ?>
-            <div class="card" style="width: 18rem;">
-              <img src="<?php echo $elem -> immagine ?>" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <?php echo ($elem->nome) ?>
-                </h5>
-                <p class="card-text">
-                  <?php echo ($elem->prezzo) ?>
-                </p>
+      <div class="row">
+        <h2>I nostri prodotti</h2>
+        <?php foreach ($prodotti as $elem) { ?>
+          <div class="card m-3" style="width: 18rem">
+            <img src="<?php echo $elem->immagine ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">
+                <?php echo ($elem->nome) ?>
+              </h5>
+              <p>Prezzo:
+                <?php echo ($elem->prezzo) ?> €
+              </p>
 
-                <p class="card-text">
-                  <?php echo ($elem->category->nome);
-                  echo ($elem->category->icona); ?>
-                </p>
-              </div>
+              <p>
+                <?php echo ($elem->category->nome);
+                echo ($elem->category->icona); ?>
+              </p>
+              <?php
+              if ($elem instanceof cibo) {
+                echo '<p>Peso: ' . $elem->peso . 'g</p>';
+                echo '<p>Ingredienti: ' . $elem->ingredienti . '</p>';
+              } else if ($elem instanceof giocattoli) {
+                echo '<p>Caratteristiche:' . $elem->caratteristiche . '</p>';
+                echo '<p>Dimensioni: ' . $elem->dimensioni . '</p>';
+              } else if ($elem instanceof accessori) {
+                echo '<p>' . $elem->materiale . '</p>';
+                echo '<p>Dimensioni: ' . $elem->dimensioni . '</p>';
+              } ?>
             </div>
-          <?php } ?>
 
-        </div>
-
+          </div>
+        <?php } ?>
       </div>
-
     </div>
 
 

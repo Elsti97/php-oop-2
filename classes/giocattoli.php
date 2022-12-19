@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . './prodotto.php';
+include_once __DIR__ . '/prodotto.php';
 
 class giocattoli extends Prodotto {
   public $caratteristiche;
